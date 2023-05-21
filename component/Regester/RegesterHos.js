@@ -3,15 +3,16 @@ import React, { Fragment, useRef, useState } from 'react'
 import Nav from '../Home/Nav';
 import classes from './Regester.module.css'
 import axios from 'axios';
-export const Regester = (props) => {
+export const RegesterHos = (props) => {
 
     const Username = useRef();
     const Email = useRef();
-    const National_id = useRef();
     const Password = useRef();
     const First_name = useRef();
     const Mobile_number = useRef();
     const Last_name = useRef();
+    const Address = useRef();
+
  //   const Has_full_access = useRef();
  //   const Age = useRef();
  //   const Weight = useRef();
@@ -23,14 +24,15 @@ export const Regester = (props) => {
 
     // Send the POST request using fetch 'https://dfdd-45-147-66-149.ngrok.io/add/'
 
-    const submitHandler = async () => {
-        const Donor = {
-        username : Username.current.value,
+    const SignupHos =(event) => {
+        event.preventDefault()
+         const Donor = {
+         username : Username.current.value,
          email : Email.current.value,
-         national_id : National_id.current.value,
          password : Password.current.value,
          first_name : First_name.current.value,
-        //  mobile_numberr : Mobile_number.current.value,
+        //  mobile_numberr : Mobile_number.current.value
+         address : Address.current.value,
          last_name : Last_name.current.value,
          has_full_access : false,
         //const age = Weight.current.value;
@@ -39,9 +41,8 @@ export const Regester = (props) => {
         }
          
          props.onAdd(Donor);
-
+        
     }
-    
 
 
 
@@ -60,13 +61,13 @@ export const Regester = (props) => {
                                 </div>
 
                                 <div className={classes.control}>
-                                    <label htmlFor='username'>اسم الاول </label>
-                                    <input type='text' id='username' required ref={First_name} />
+                                    <label htmlFor='First_name'>اسم الاول </label>
+                                    <input type='text' id='First_name' required ref={First_name} />
                                 </div>
 
                                 <div className={classes.control}>
-                                    <label htmlFor='username'>اسم الاخير </label>
-                                    <input type='text' id='username' required ref={Last_name} />
+                                    <label htmlFor='Last_name'>اسم الاخير </label>
+                                    <input type='text' id='Last_name' required ref={Last_name} />
                                 </div>
 
                                 <div className={classes.control}>
@@ -74,8 +75,8 @@ export const Regester = (props) => {
                                     <input type='email' id='email' required ref={Email} />
                                 </div>
                                 <div className={classes.control}>
-                                    <label htmlFor='number'>رقم الهوية</label>
-                                    <input type='number' id='number' required ref={National_id} />
+                                    <label htmlFor='Address'> العنوان </label>
+                                    <input type='text' id='Address' required ref={Address} />
                                 </div>
 
                                 <div className={classes.control}>
@@ -116,17 +117,18 @@ export const Regester = (props) => {
 
                                 </div> */}
                                 </div>
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                <label className={classes.label1} for="vehicle1"> اوافق على<Link href={'/'}> الشروط </Link>  </label><br />
+                                <input type="checkbox" id="" name="" value="" />
+                                <label className={classes.label1} for=""> اوافق على<Link href={'/'}> الشروط </Link>  </label><br />
                                 <div className={classes.actions}>
                                     {(
-                                        <button onClick={submitHandler}><Link href={'/'}>{"انشاء الحساب"}</Link> </button>
+                                        <button onClick={SignupHos}> <Link href={'/login/LogInAsHos'}>
+                                        {'انشاء حساب  '}</Link></button>
                                     )}
                                     <button
                                         type='button'
                                         className={classes.toggle}
                                     >
-                                        <Link href={'/LogIn'}>
+                                        <Link href={'//login/LogInAsHos'}>
                                             {'املك حساب بالفعل'}</Link>
                                     </button>
                                 </div>

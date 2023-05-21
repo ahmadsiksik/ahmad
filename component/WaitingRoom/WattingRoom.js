@@ -5,11 +5,10 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.css'
 import classes from './WattingRoom.module.css'
-import { data } from './data.js';
+import { data } from './Data.js';
 import Nav from '../Home/Nav';
 
-function WaitingRoom() {
-  const [contacts, setContacts] = useState(data);
+function WaitingRoom(props) {
   const [search, setSearch] = useState('');
 
   // const sortName = () => {
@@ -30,7 +29,7 @@ function WaitingRoom() {
 
       <Container>
 
-        <h1 className='text-center mt-4'>المتبرعين المماحين </h1>
+        <h1 className='text-center mt-4'>المتبرعين المتاحين </h1>
         <Form>
 
           <Form.Select style={{width: '70px'}}>
@@ -63,18 +62,31 @@ function WaitingRoom() {
             </tr>
           </thead>
           <tbody>
+        
             {data.filter((item) => {
               return search.toLowerCase() === ' '
                 ? item
                 : item.first_name.includes(search);
             }).map((item, index) => (
               <tr key={index}>
-                <td>{item.first_name}</td>
-                <td>{item.last_name}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
+              <td>
+              {item.first_name}
+            </td>
+            <td>
+
+              {item.last_name}
+            </td>
+            <td>
+
+              {item.email}
+            </td>
+            <td>
+
+              {item.phone}
+            </td>
               </tr>
             ))}
+       
           </tbody>
         </Table>
       </Container>

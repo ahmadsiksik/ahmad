@@ -1,10 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import classes from './Cart.module.css';
 import { useRef } from 'react';
 import Link from 'next/link';
 
 const Cart = (props) => {
-    
+    const[Close,useClose]=useState(true)
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
 
@@ -27,9 +27,15 @@ const Cart = (props) => {
         //     },
         // })
     }
+    const Cloose = () => {
+        useClose(false);
+    }
+
+
 
     return (
         <Fragment>
+         {Close&&
             <div className={classes.main}>
                 <div className={classes.overlay}>
                         <div className={classes.content}>
@@ -52,14 +58,15 @@ const Cart = (props) => {
                                     </div>
                                     
                                     <div className={classes.actions}>
-                                    <button className={classes.button} >Done</button>
-                                    <button className={classes.button} >Close</button>
+                                    <button className={classes.button} onClick={Cloose}>Done</button>
+                                    <button className={classes.button} onClick={Cloose}>Close</button>
                                     </div>
                                 </form>
                             </section>
                         </div>
                     </div>
                 </div>
+            }
         </Fragment>
 
     );

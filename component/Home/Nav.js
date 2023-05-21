@@ -7,7 +7,7 @@ const Nav = () => {
     <nav className={classes.nav}>
         <ul className={classes.ul}>
                 <li className={classes.li}><a href="/"></a></li>
-                <li className={classes.li}><Link href="/LogIn">تسجيل الدخول </Link></li>
+                <li className={classes.li}><Link href="/login/LogInAsDoner">تسجيل الدخول </Link></li>
                 <li className={classes.li}><Link href="/profile">الملف الشخصي</Link></li>
                 <li className={classes.li} ><Link href="/WaitinRoom">المتبرعين المتاحين</Link></li>
                 <li className={classes.li}><Link href="/">صفحة رئيسية</Link></li>

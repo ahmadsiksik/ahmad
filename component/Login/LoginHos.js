@@ -4,7 +4,7 @@ import classes from './Login.module.css'
 import React, { Fragment, useRef, useState } from 'react'
 
 
-export const Login = (props) => {
+export const LoginHos = (props) => {
     const Passowrd = useRef();
     const Identifier=useRef();
 
@@ -29,14 +29,14 @@ export const Login = (props) => {
 
                             <section className={classes.auth}>
                                 <h1>{'تسجيل الدخول '}</h1>
-                                <form >
+                                <form onSubmit={LoginHandler}>
                                     <div className={classes.control}>
-                                        <label htmlFor="identifier">البريد الالكتروني</label>
+                                        <label htmlFor="Identifier">البريد الالكتروني</label>
                                         <input type='text' id='identifier' required ref={Identifier}  />
                                     </div>
 
                                     <div className={classes.control}>
-                                        <label htmlFor='password'>كلمة السر</label>
+                                        <label htmlFor='Passowrd'>كلمة السر</label>
                                         <input
                                             type='password' 
                                             id='password'
@@ -54,7 +54,7 @@ export const Login = (props) => {
                                             className={classes.toggle}
                                             
                                         >
-                                            <Link href={'/SignUp'}>
+                                            <Link href={'/Regester/RegesterAsHos'}>
                                             {'انشاء حساب'}
                                             
                                             </Link>
