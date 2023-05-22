@@ -7,7 +7,7 @@ export default function RegesterAsHos() {
     console.log(Donor);
    
     try {
-        const response = await fetch("https://e03c-83-244-2-162.ngrok-free.app/hospital/signup/", {
+        const response = await fetch("https://3f0f-83-244-77-29.ngrok-free.app/hospital/signup/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(Donor),

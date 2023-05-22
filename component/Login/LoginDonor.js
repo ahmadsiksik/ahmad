@@ -20,14 +20,12 @@ export const LoginDonor = (props) => {
 }
 
 
-
-
     return (
         <Fragment>
             <div className={classes.main}>
                 <div className={classes.overlay}>
                         <div className={classes.content}>
-            <Nav/>
+            <Nav Data={props.Res} />
 
                             <section className={classes.auth}>
                                 <h1>{'تسجيل الدخول '}</h1>
@@ -49,7 +47,7 @@ export const LoginDonor = (props) => {
                                     
                                     <div className={classes.actions}>
                                     {(
-                                           <button onClick={DonerLogin}><Link href={'/'}>تسجيل الدخول</Link></button>
+                                           <button onClick={DonerLogin}>تسجيل الدخول</button>
                                     )}
                                         <button
                                             type='button'

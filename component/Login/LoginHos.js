@@ -47,7 +47,7 @@ export const LoginHos = (props) => {
                                     
                                     <div className={classes.actions}>
                                     {(
-                                           <button onClick={LoginHandler}><Link href={'/'}>تسجيل الدخول</Link></button>
+                                           <button onClick={LoginHandler}>تسجيل الدخول</button>
                                     )}
                                         <button
                                             type='button'

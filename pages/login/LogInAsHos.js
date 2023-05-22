@@ -1,18 +1,22 @@
 import { Fragment, useState } from 'react'
 import { LoginHos } from '../../component/Login/LoginHos'
+import { useRouter } from 'next/router';
+
 export default function LogInAsHos() {
-  
+  const history = useRouter();
+
   const handleLogin= async (DonorLog)=> {
         console.log(DonorLog);
 
     try {
-        const response = await fetch("https://e03c-83-244-2-162.ngrok-free.app/hospital/login/", {
+        const response = await fetch("https://3f0f-83-244-77-29.ngrok-free.app/hospital/login/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(DonorLog),
         });
         if (response.status === 200) {
           // إعادة تهيئة حالة الرسالة بعد التخزين
+          history.replace('/HomeHos');
           alert("تم الدخول بنجاح")
         }
         else {
