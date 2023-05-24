@@ -31,7 +31,7 @@ export const RegesterHos = (props) => {
          email : Email.current.value,
          password : Password.current.value,
          first_name : First_name.current.value,
-        //  mobile_numberr : Mobile_number.current.value
+         phone_number : Mobile_number.current.value,
          address : Address.current.value,
          last_name : Last_name.current.value,
          has_full_access : false,
@@ -121,14 +121,14 @@ export const RegesterHos = (props) => {
                                 <label className={classes.label1} for=""> اوافق على<Link href={'/'}> الشروط </Link>  </label><br />
                                 <div className={classes.actions}>
                                     {(
-                                        <button onClick={SignupHos}> <Link href={'/login/LogInAsHos'}>
-                                        {'انشاء حساب  '}</Link></button>
+                                        <button onClick={SignupHos}> 
+                                        {'انشاء حساب  '}</button>
                                     )}
                                     <button
                                         type='button'
                                         className={classes.toggle}
                                     >
-                                        <Link href={'//login/LogInAsHos'}>
+                                        <Link href={'/login/LogInAsHos'}>
                                             {'املك حساب بالفعل'}</Link>
                                     </button>
                                 </div>

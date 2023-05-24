@@ -91,6 +91,7 @@ function WaitingRoom(props) {
                             <th>رقم الهاتف</th>
                             <th>العنوان</th>
                             <th>زمره الدم</th>
+                            <th>احتمالية التبرع </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,6 +124,10 @@ function WaitingRoom(props) {
                                 <td>
 
                                     {item.BloodType}
+                                </td>
+                                <td>
+
+                                    {item.Pre}
                                 </td>
                                 <td>
                                     <button>الاستدعاء</button>

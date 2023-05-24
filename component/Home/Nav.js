@@ -1,24 +1,45 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link';
 import classes from './Nav.module.css'
+import { useSelector } from 'react-redux';
 const Nav = (props) => {
-  const [Tes,useTes] =useState(true)
-  console.log(props.Data);
-  const response=props.Data;
-  
-  // if(response===200){
-  //   useTes(false)
-  // }    
-  
+  const[LoginDonor,setLoginDonor]=useState(false);
+  const[LoginHos,setLoginHos]=useState(false);
+  const[Nothing,setNothing]=useState(false);
+
+
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
+
+  useEffect(()=>{
+    if(isAuth==="Donor"){
+      setLoginDonor(true)
+    }
+    if(isAuth==="Hos"){
+      setLoginHos(true)
+    }
+
+    if(isAuth==="No"){
+      setNothing(true)
+    }
+
+
+  },);
+  console.log(isAuth);
+
+
     return  (
     <Fragment>
     <nav className={classes.nav}>
         <ul className={classes.ul}>
-                <li className={classes.li}><a href="/"></a></li>
-              {Tes&&<li className={classes.li}><Link href="/login/LogInAsDoner">تسجيل الدخول </Link></li>}
-                <li className={classes.li}><Link href="/profile">الملف الشخصي</Link></li>
-                <li className={classes.li} ><Link href="/WaitinRoom">المتبرعين المتاحين</Link></li>
-                <li className={classes.li}><Link href="/">صفحة رئيسية</Link></li>
+              <li className={classes.li}><a href="/"></a></li>
+              {!LoginDonor&&!LoginHos&&<li className={classes.li}><Link href="/login/LogInAsDoner">تسجيل الدخول </Link></li>}
+              {(LoginDonor||LoginHos)&&<li className={classes.li}><Link href="/login/LogInAsDoner">تسجيل الخروج </Link></li>}
+              {(LoginDonor||LoginHos)&&!LoginHos&& <li className={classes.li}><Link href="/profile">الملف الشخصي</Link></li>}
+              {(LoginDonor||LoginHos)&&!LoginDonor &&  <li className={classes.li} ><Link href="/WaitinRoom">المتبرعين المتاحين</Link></li>}
+              <li className={classes.li}><Link href="/">صفحة رئيسية</Link></li>
+              {/* {(LoginDonor||!LoginHos)&&!LoginDonor && <li className={classes.li}><Link href="/">صفحة رئيسية</Link></li>}
+              {(LoginDonor||!LoginHos)&&  <li className={classes.li}><Link href="/HomeHos">صفحة رئيسية</Link></li>} */}
+
         </ul>
     </nav>
     </Fragment>

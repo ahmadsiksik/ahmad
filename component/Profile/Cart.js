@@ -5,27 +5,30 @@ import Link from 'next/link';
 
 const Cart = (props) => {
     const[Close,useClose]=useState(true)
-    const emailInputRef = useRef();
-    const passwordInputRef = useRef();
+    const Name = useRef();
+    const Age = useRef();
+    const Weight = useRef();
+    const Gender = useRef();
+    const Is_Smoker = useRef();
+    const Last_Donation_Months = useRef();
+    const First_Donation_Months = useRef();
+    const No_Donation = useRef();
+    const Address = useRef();
 
     const submitHandler = (event) => {
         event.preventDefault();
 
-        const enteredEmail = emailInputRef.current.value;
-        const enteredPassword = passwordInputRef.current.value;
-
-        
-        // fetch(url, {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         email: enteredEmail,
-        //         password: enteredPassword,
-        //         returnSecureToken: true,
-        //     }),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
+        const Temp={
+         name : Name.current.value,
+         age : Age.current.value,
+         weight : Weight.current.value,
+         gender : Gender.current.value,
+         is_smoker : Is_Smoker.current.value,
+         last_donation_months : Last_Donation_Months.current.value,
+         first_donation_months : First_Donation_Months.current.value,
+         no_donation : No_Donation.current.value,
+         address : Address.current.value,
+        }
     }
     const Cloose = () => {
         useClose(false);
@@ -45,18 +48,46 @@ const Cart = (props) => {
                                 <form onSubmit={submitHandler}>
                                     <div className={classes.control}>
                                         <label htmlFor='text'>الاسم الكامل</label>
-                                        <input type='text' id='text' required  ref={emailInputRef}/>
+                                        <input type='text' id='text' required  ref={Name}/>
                                     </div>
                                     <div className={classes.control}>
-                                        <label htmlFor='number'>رقم الجوال </label>
+                                        <label htmlFor='number'>العمر</label>
                                         <input
                                             type='number' 
                                             id='number'
                                             required  
-                                            ref={emailInputRef}      
+                                            ref={Age}      
                                         />
                                     </div>
-                                    
+                                    <div className={classes.control}>
+                                        <label htmlFor='number'>الوزن </label>
+                                        <input type='number' id='number' required  ref={Weight}/>
+                                    </div>
+                                    <div className={classes.control}>
+                                        <label htmlFor='text'>الجنس</label>
+                                        <input type='text' id='text' required  ref={Gender}/>
+                                    </div>
+                                    <div className={classes.control}>
+                                        <label htmlFor='text'>مدخن ام لا</label>
+                                        <input type='text' id='text' required  ref={Is_Smoker}/>
+                                    </div>
+                                    <div className={classes.control}>
+                                        <label htmlFor='text'>اخر شهر تم التبرع فيه</label>
+                                        <input type='date' id='text' required  ref={Last_Donation_Months}/>
+                                    </div>
+                                    <div className={classes.control}>
+                                        <label htmlFor='text'>اول شهر تم التبرع فيه</label>
+                                        <input type='date' id='text' required  ref={First_Donation_Months}/>
+                                    </div>
+                                    <div className={classes.control}>
+                                        <label htmlFor='number'>الكميه التي تم التبرع فيها في حياته</label>
+                                        <input type='number' id='number' required  ref={No_Donation}/>
+                                    </div>
+                                    <div className={classes.control}>
+                                        <label htmlFor='text'>العنوان</label>
+                                        <input type='text' id='text' required  ref={Address}/>
+                                    </div>
+                              
                                     <div className={classes.actions}>
                                     <button className={classes.button} onClick={Cloose}>Done</button>
                                     <button className={classes.button} onClick={Cloose}>Close</button>

@@ -120,7 +120,7 @@ export const RegesterDonor = (props) => {
                                 <label className={classes.label1} for="vehicle1"> اوافق على<Link href={'/'}> الشروط </Link>  </label><br />
                                 <div className={classes.actions}>
                                     {(
-                                        <button onClick={SignupDonor}> <Link href={'/login/LogInAsDoner'}>{'انشاء حساب'}</Link></button>
+                                        <button onClick={SignupDonor}> {'انشاء حساب'}</button>
                                     )}
                                     <button
                                         type='button'

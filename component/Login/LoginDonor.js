@@ -2,14 +2,22 @@ import Link from 'next/link';
 import Nav from '../Home/Nav';
 import classes from './Login.module.css'
 import React, { Fragment, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../Store/auth';
 
 
 export const LoginDonor = (props) => {
     const Passowrd = useRef();
     const Identifier=useRef();
+    const dispatch = useDispatch();
+
+
+  
+  
 
     const DonerLogin = (event) => {    
         event.preventDefault()
+        dispatch(authActions.loginAsDonor());
 
     const DonorLog = {
         identifier: Identifier.current.value,

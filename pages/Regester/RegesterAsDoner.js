@@ -1,13 +1,16 @@
 import { Fragment } from 'react'
 import { RegesterDonor } from '../../component/Regester/RegesterDonor'
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+
 export default function RegesterAsDoner() {
+  const history = useRouter();
 
   async function handleSignup(Donor) {
     console.log(Donor);
-   
+
     try {
-        const response = await fetch("https://3f0f-83-244-77-29.ngrok-free.app/donor/signup/", {
+        const response = await fetch("https://f81b-83-244-2-162.ngrok-free.app/donor/signup/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(Donor),
@@ -15,6 +18,7 @@ export default function RegesterAsDoner() {
      
         if (response.status === 200) {
           // إعادة تهيئة حالة الرسالة بعد التخزين
+          history.replace('/login/LogInAsDoner');
           alert("تم انشاء حساب بنجاح")
         }
         else {

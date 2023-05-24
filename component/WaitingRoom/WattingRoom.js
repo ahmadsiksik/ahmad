@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.css'
 import classes from './WattingRoom.module.css'
-import { data } from './Data.js';
+import { data1 } from './Data.js';
 import Nav from '../Home/Nav';
 
 function WaitingRoom(props) {
@@ -32,21 +32,52 @@ function WaitingRoom(props) {
         <h1 className='text-center mt-4'>المتبرعين المتاحين </h1>
         <Form>
 
-          <Form.Select style={{width: '70px'}}>
+
+          <Form.Select style={{ width: '70px' }}>
             <option label={"All"}
               checked={search === "All"}
               value=" "
               onClick={(e) => setSearch(e.target.value)}>All</option>
 
-            <option label={"Morry"}
-              checked={search === "Morry"}
-              value="Morry"
-              onClick={(e) => setSearch(e.target.value)}>Morry</option>
+            <option label={"A+"}
+              checked={search === "A+"}
+              value="A+"
+              onClick={(e) => setSearch(e.target.value)}>A+</option>
 
-            <option label={"Laverne"}
-              checked={search === "Laverne"}
-              value="Laverne"
-              onClick={(e) => setSearch(e.target.value)}>Laverne</option>
+            <option label={"A-"}
+              checked={search === "A-"}
+              value="A-"
+              onClick={(e) => setSearch(e.target.value)}>A-</option>
+
+            <option label={"B+"}
+              checked={search === "B+"}
+              value="B+"
+              onClick={(e) => setSearch(e.target.value)}>B+</option>
+
+            <option label={"B-"}
+              checked={search === "B-"}
+              value="B-"
+              onClick={(e) => setSearch(e.target.value)}>B-</option>
+
+            <option label={"AB+"}
+              checked={search === "AB+"}
+              value="AB+"
+              onClick={(e) => setSearch(e.target.value)}>AB+</option>
+
+            <option label={"AB-"}
+              checked={search === "AB-"}
+              value="AB-"
+              onClick={(e) => setSearch(e.target.value)}>AB-</option>
+
+            <option label={"O+"}
+              checked={search === "O+"}
+              value="O+"
+              onClick={(e) => setSearch(e.target.value)}>O+</option>
+
+            <option label={"O-"}
+              checked={search === "O-"}
+              value="O-"
+              onClick={(e) => setSearch(e.target.value)}>O-</option>
           </Form.Select>
           {/* onChange for search */}
         </Form>
@@ -55,38 +86,63 @@ function WaitingRoom(props) {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Phone</th>
+              <th>الاسم الاول</th>
+              <th>الاسم الاخر</th>
+              <th>البريد الالكتروني</th>
+              <th>رقم الهاتف</th>
+              <th>العنوان</th>
+              <th>زمره الدم</th>
+              <th>الموعد</th>
             </tr>
           </thead>
           <tbody>
-        
-            {data.filter((item) => {
-              return search.toLowerCase() === ' '
+
+            {data1.filter((item) => {
+              return search.toLowerCase() === ''
                 ? item
                 : item.first_name.includes(search);
             }).map((item, index) => (
               <tr key={index}>
-              <td>
-              {item.first_name}
-            </td>
-            <td>
+                <td>
+                  {item.first_name}
+                </td>
+                <td>
 
-              {item.last_name}
-            </td>
-            <td>
+                  {item.last_name}
+                </td>
+                <td>
 
-              {item.email}
-            </td>
-            <td>
+                  {item.email}
+                </td>
+                <td>
 
-              {item.phone}
-            </td>
+                  {item.phone}
+                </td>
+                
+                <td>
+
+                  {item.Address}
+                </td>
+                <td>
+                  {item.BloodType}
+                </td>
+                <td>
+
+                  {item.Date}
+                </td>
+              
+                <td>
+
+                  <button>حذف</button>
+                </td>
+                <td>
+
+                  <button>الاستدعاء</button>
+                </td>
+
               </tr>
             ))}
-       
+
           </tbody>
         </Table>
       </Container>
