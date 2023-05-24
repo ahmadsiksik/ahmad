@@ -10,7 +10,7 @@ export default function LogInAsDoner() {
         console.log(DonorLog);
 
     try {
-            response = await fetch("https://f81b-83-244-2-162.ngrok-free.app/donor/login/", {
+            response = await fetch("http://127.0.0.1:8000/donor/login/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(DonorLog),

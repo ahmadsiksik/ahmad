@@ -9,7 +9,7 @@ export default function LogInAsHos() {
         console.log(DonorLog);
 
     try {
-        const response = await fetch("https://f81b-83-244-2-162.ngrok-free.app/hospital/login/", {
+        const response = await fetch("http://127.0.0.1:8000/hospital/login/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(DonorLog),

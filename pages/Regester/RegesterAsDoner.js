@@ -10,7 +10,7 @@ export default function RegesterAsDoner() {
     console.log(Donor);
 
     try {
-        const response = await fetch("https://f81b-83-244-2-162.ngrok-free.app/donor/signup/", {
+        const response = await fetch("http://127.0.0.1:8000/donor/signup/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(Donor),

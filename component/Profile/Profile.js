@@ -28,20 +28,20 @@ const Profile = (props) => {
       const jsonData = await response.json();
       setData(jsonData);
     } catch (error) {
-      console.log('حدث خطأ في جلب البيانات:', error);
+      alert('حدث خطأ في جلب البيانات:', error);
     }
   };
-
-
   
+
   const deleteData = async (id) => {
     try {
-      const response = await axios.delete("https://e03c-83-244-2-162.ngrok-free.app/donor/18/delete/");
-      console.log('Deleted successfully:', response.data);
+      const response = await axios.delete(`http://127.0.0.1:8000/donor/${id}/delete/`);
+      alert('Deleted successfully:', response.data);
 
     } catch (error) {
-      console.error('Error deleting data:', error);
+      alert('Error deleting data:', error);
     }
+
   };
 
   return (
@@ -59,7 +59,7 @@ const Profile = (props) => {
         <p className={classes.title}>العنوان : {}</p>
 
         <button className={classes.button} onClick={Click}>تعديل </button>
-        <button className={classes.button} onClick={Click}>حذف</button>
+        <button className={classes.button} onClick={() => deleteData(id)}>حذف</button>
         {Show&&<Cart/>}
         
       </div>

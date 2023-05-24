@@ -5,11 +5,27 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.css'
 import classes from '../../component/WaitingRoom/WattingRoom.module.css'
-import { data } from '../WaitingRoom/Data';
 import Nav from '../Home/Nav';
+import { useEffect } from 'react';
 
-function WaitingRoom(props) {
+function WaitingRoom(props){
     const [search, setSearch] = useState('');
+    const [data, setData] = useState(null);
+    useEffect(() => {
+      fetchData();
+    }, []);
+  
+    
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/donor'); // استبدال الرابط برابط API الخاص بك
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        alert('حدث خطأ في جلب البيانات:', error);
+      }
+    };
 
     // const sortName = () => {
     //   setContacts(

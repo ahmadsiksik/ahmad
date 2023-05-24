@@ -30,10 +30,32 @@ const Cart = (props) => {
          address : Address.current.value,
         }
     }
+
     const Cloose = () => {
         useClose(false);
     }
 
+    const Update = async() => {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/donor/${id}/patch`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(Temp),
+            });
+      
+            if (response.ok) {
+                alert('تم تحديث البيانات بنجاح!');
+            } else {
+              alert('فشل في تحديث البيانات.');
+            }
+          } catch (error) {
+            alert('حدث خطأ في إرسال البيانات:', error);
+          }
+        };
+      
+        useClose(false);
 
 
     return (
@@ -89,7 +111,7 @@ const Cart = (props) => {
                                     </div>
                               
                                     <div className={classes.actions}>
-                                    <button className={classes.button} onClick={Cloose}>Done</button>
+                                    <button className={classes.button} onClick={Update}>Done</button>
                                     <button className={classes.button} onClick={Cloose}>Close</button>
                                     </div>
                                 </form>
@@ -101,6 +123,6 @@ const Cart = (props) => {
         </Fragment>
 
     );
-}
+ }
 
 export default Cart;

@@ -5,12 +5,36 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.css'
 import classes from './WattingRoom.module.css'
-import { data1 } from './Data.js';
 import Nav from '../Home/Nav';
+import { useEffect } from "react";
 
 function WaitingRoom(props) {
   const [search, setSearch] = useState('');
+  const [data, setData] = useState(null);
+    useEffect(() => {
+      fetchData();
+    }, []);
+  
+    const deleteData = async (id) => {
+      try {
+        const response = await axios.delete(`http://127.0.0.1:8000/donation/${id}/delete/`);
+        alert('Deleted successfully:', response.data);
+  
+      } catch (error) {
+        alert('Error deleting data:', error);
+      }
+  
+    };
 
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/donation'); // استبدال الرابط برابط API الخاص بك
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        alert('حدث خطأ في جلب البيانات:', error);
+      }
+    };
   // const sortName = () => {
   //   setContacts(
   //     data.sort((a, b) => {
@@ -97,7 +121,7 @@ function WaitingRoom(props) {
           </thead>
           <tbody>
 
-            {data1.filter((item) => {
+            {data.filter((item) => {
               return search.toLowerCase() === ''
                 ? item
                 : item.first_name.includes(search);
@@ -133,11 +157,11 @@ function WaitingRoom(props) {
               
                 <td>
 
-                  <button>حذف</button>
+                  <button onClick={deleteData}>حذف</button>
                 </td>
                 <td>
 
-                  <button>الاستدعاء</button>
+                  <button onClick={deleteData}>تعديل</button>
                 </td>
 
               </tr>
