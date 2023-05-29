@@ -4,6 +4,9 @@ import { Fragment } from 'react'
 import styles from '../styles/Home.module.css'
 import { Home1 } from '../component/Home/Home1'
 export default function Home() {
+  
+
+
   return (
     <Fragment>
       <Home1/>

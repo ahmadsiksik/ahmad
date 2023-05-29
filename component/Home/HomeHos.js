@@ -1,21 +1,65 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.css'
-import classes from '../../component/WaitingRoom/WattingRoom.module.css'
 import Nav from '../Home/Nav';
 import CartDonation from './CartDonation'
 import { useEffect } from 'react';
+import { useRef } from 'react';
+import classes from '../Profile/Cart.module.css';
 
 function WaitingRoom(props){
     const [search, setSearch] = useState('');
     const [data, setData] = useState([]);
-
     const [Show, setShow] = useState(false);
+    const [Close, setClose] = useState(true);
+    const Donation_date = useRef('');
+
+
+    const [Temp, setTemp] = useState('');
+    const myData1 = localStorage.getItem('myData1');
+    const Data = localStorage.getItem('Data');
+    let response;
+console.log(myData1,Data);
+    const submitHandler =async (event) => {
+        event.preventDefault();
+        const Templ = {
+            donation_date : Donation_date.current.valueOf,
+            hospital_id: myData1,
+            donor_id: Data,
+            will_donate: false,
+        };
+        setTemp(Templ);
+        console.log(Temp);
+        AddDonation();
+    };
+
+    const Cloose = () => {
+        setClose(false);
+        setShow(false);     
+    };
+
+    const AddDonation = async () => {
+        try {
+            response = await fetch('http://127.0.0.1:8000/donations/create/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Temp),
+            });
+
+            if (response.ok) {
+                alert('تم الإضافة بنجاح');
+            } else {
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
+    setShow(false)
       fetchData();
     },[]);
 
@@ -32,10 +76,28 @@ function WaitingRoom(props){
     };
 
 
-    const PostData=(id)=>{
+    const PostData=()=>{
         setShow(true)
-        localStorage.setItem('Data',id)
     }
+
+    console.log(Show);
+
+
+    const Passowrd = useRef();
+    const Identifier = useRef();
+
+
+
+    const DonerLogin = (event) => {
+        event.preventDefault()
+
+        const DonorLog = {
+            identifier: Identifier.current.value,
+            password: Passowrd.current.value,
+        }
+        props.onAddDonorLog(DonorLog);
+    }
+    
 
     // const sortName = () => {
     //   setContacts(
@@ -56,59 +118,61 @@ function WaitingRoom(props){
 
             <Container>
 
-                <h1 className='text-center mt-4'>المتبرعين المتاحين </h1>
-                <Form>
-
-                    <Form.Select style={{ width: '70px' }}>
-                        <option label={"All"}
-                            checked={search === "All"}
-                            value=" "
-                            onClick={(e) => setSearch(e.target.value)}>All</option>
-
-                        <option label={"A+"}
-                            checked={search === "A+"}
-                            value="A+"
-                            onClick={(e) => setSearch(e.target.value)}>A+</option>
-
-                        <option label={"A-"}
-                            checked={search === "A-"}
-                            value="A-"
-                            onClick={(e) => setSearch(e.target.value)}>A-</option>
-
-                        <option label={"B+"}
-                            checked={search === "B+"}
-                            value="B+" 
-                            onClick={(e) => setSearch(e.target.value)}>B+</option>
-
-                        <option label={"B-"}
-                            checked={search === "B-"}
-                            value="B-"
-                            onClick={(e) => setSearةch(e.target.value)}>B-</option>
-
-                        <option label={"AB+"}
-                            checked={search === "AB+"}
-                            value="AB+"
-                            onClick={(e) => setSearch(e.target.value)}>AB+</option>
-
-                        <option label={"AB-"}
-                            checked={search === "AB-"}
-                            value="AB-"
-                            onClick={(e) => setSearch(e.target.value)}>AB-</option>
-
-                        <option label={"O+"}
-                            checked={search === "O+"}
-                            value="O+"
-                            onClick={(e) => setSearch(e.target.value)}>O+</option>
-
-                        <option label={"O-"}
-                            checked={search === "O-"}
-                            value="O-"
-                            onClick={(e) => setSearch(e.target.value)}>O-</option>
-                    </Form.Select>
-                    {/* onChange for search */}
-                </Form>
                 <br />
+                <div className={classes.main}>
+                <div className={classes.overlay}>
+                    <div className={classes.content}>
+                        <Nav />
+                        <section className={classes.auth}>
+                            <h1>{' فلتره المتبرعين '}</h1>
+                            <form >
+                                <div className={classes.control}>
+                                    <label htmlFor="Identifier">عدد الوحدات المطلوبه </label>
+                                    <input type='text' id='identifier' required ref={Identifier} />
+                                </div>
 
+                                <div className={classes.control}>
+                                    <label htmlFor='Passowrd'>زمرة الدم </label>
+                                    <input
+                                        type='password'
+                                        id='password'
+                                        required
+                                        ref={Passowrd}
+                                    />
+                                </div>
+
+                                <div className={classes.control}>
+                                    <label htmlFor='Passowrd'>موعد التبرع</label>
+                                    <input
+                                        type='password'
+                                        id='password'
+                                        required
+                                        ref={Passowrd}
+                                    />
+                                </div>
+
+
+                                <div className={classes.control}>
+                                    <label htmlFor='Passowrd'>المكان</label>
+                                    <input
+                                        type='password'
+                                        id='password'
+                                        required
+                                        ref={Passowrd}
+                                    />
+                                </div>
+
+
+                                <div className={classes.actions}>
+                                    {(
+                                        <button onClick={DonerLogin}>تسجيل الدخول</button>
+                                    )}
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -160,11 +224,35 @@ function WaitingRoom(props){
                                     {item.prediction}
                                 </td>
                                 <td>
-                                    <button onClick={()=>{PostData(item.id)}}>الاستدعاء</button>
+                                    <button onClick={PostData}>الاستدعاء</button>
                                 </td>
                             </tr>
                         ))}
-            {Show && <CartDonation/>}
+            {Show && <Fragment>
+                <div className={classes.main}>
+                    <div className={classes.overlay}>
+                        <div className={classes.content}>
+                            <section className={classes.auth}>
+                                <form >
+                                    <div className={classes.control}>
+                                        <label htmlFor='date'>موعد التبرع </label>
+                                        <input type='date' id='date' required ref={Donation_date} />
+                                    </div>
+
+                                    <div className={classes.actions}>
+                                        <button type='submit' className={classes.button} onClick={submitHandler}>
+                                            Done
+                                        </button>
+                                        <button type='button' className={classes.button} onClick={Cloose}>
+                                            Close
+                                        </button>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                </Fragment>}
 
                     </tbody>
                 </Table>

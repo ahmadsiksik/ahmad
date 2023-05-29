@@ -155,7 +155,7 @@ const Profile = () => {
           <tbody>
 
             {data2.map((item, index) => {
-                          {console.log(item.donor__id,myData)}
+            {console.log(item.donor__id,myData)}
             if(item.donor__id==myData){
             return( 
             <tr key={index}>
@@ -188,7 +188,7 @@ const Profile = () => {
 
               </tr>)
             }
-            })};
+            })}
           </tbody>
         </Table>
 

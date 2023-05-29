@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/Regester/RegesterAsDoner": "pages/Regester/RegesterAsDoner.js",
-  "/login/LogInAsDoner": "pages/login/LogInAsDoner.js",
+  "/profile": "pages/profile.js",
   "/": "pages/index.js",
-  "/profile": "pages/profile.js"
+  "/login/LogInAsDoner": "pages/login/LogInAsDoner.js"
 }

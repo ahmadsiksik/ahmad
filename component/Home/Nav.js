@@ -10,6 +10,9 @@ const Nav = (props) => {
 
 
   const isAuth = useSelector(state => state.auth.isAuthenticated);
+const logout=()=>{
+  dispatch(authActions.logout());
+}
 
   useEffect(()=>{
     if(isAuth==="Donor"){
@@ -20,7 +23,7 @@ const Nav = (props) => {
     }
 
     if(isAuth==="No"){
-      setNothing(true)
+      console.log("hishamaa");
     }
 
 
@@ -31,9 +34,10 @@ const Nav = (props) => {
         <ul className={classes.ul}>
               <li className={classes.li}><a href="/"></a></li>
               {!LoginDonor&&!LoginHos&&<li className={classes.li}><Link href="/login/LogInAsDoner">تسجيل الدخول </Link></li>}
-              {(LoginDonor||LoginHos)&&<li className={classes.li}><Link href="/login/LogInAsDoner">تسجيل الخروج </Link></li>}
+              {(LoginDonor||LoginHos)&&<li className={classes.li}><Link href="/login/LogInAsDoner" onClick={logout}>تسجيل الخروج </Link></li>}
               {(LoginDonor||LoginHos)&&!LoginHos&& <li className={classes.li} ><Link href="/profile">الملف الشخصي</Link></li>}
               {(LoginDonor||LoginHos)&&!LoginDonor &&  <li className={classes.li} ><Link href="/WaitinRoom">قائمة الانظار</Link></li>}
+              {(LoginDonor||LoginHos)&&!LoginDonor &&  <li className={classes.li} ><Link href="/Painding">المتبرعين الجدد</Link></li>}
               {(LoginDonor||LoginHos)&&!LoginDonor &&  <li className={classes.li} ><Link href="/HomeHos">المتبرعين المتاحين</Link></li>}
               <li className={classes.li}><Link href="/">الصفحة الرئيسية</Link></li>
 
